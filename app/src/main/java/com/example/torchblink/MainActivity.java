@@ -9,12 +9,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.hardware.camera2.CameraManager;
 import android.hardware.camera2.CameraAccessException;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
 
     Button btn;
+
+    EditText editText;
     private  CameraManager cameraManager;
     private String CameraId;
 
@@ -27,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         btn=findViewById(R.id.button);
+        editText=findViewById(R.id.editTextText);
 
         cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
         try {
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
             Toast toast = null;
             toast.makeText((Context) MainActivity.this, (CharSequence) e,Toast.LENGTH_SHORT).show();
         }
-        btn.setOnClickListener(v->{blinkTorch(10);});
+        btn.setOnClickListener(v->{blinkTorch(Integer.parseInt(editText.getText().toString()));});
     }
 
     private void blinkTorch(int times) {
